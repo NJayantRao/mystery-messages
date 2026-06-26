@@ -18,7 +18,7 @@ export async function POST(req: Request) {
     if (existingUserVerifiedByUsername) {
       return Response.json(
         { success: false, message: "Username already exists" },
-        { status: 400 },
+        { status: 400 }
       );
     }
 
@@ -29,7 +29,7 @@ export async function POST(req: Request) {
       if (existingUserByEmail.isVerified) {
         return NextResponse.json(
           { success: false, message: "Email already exists" },
-          { status: 400 },
+          { status: 400 }
         );
       } else {
         const hashedPassword = await bcrypt.hash(password, 10);
@@ -61,24 +61,24 @@ export async function POST(req: Request) {
     const emailResponse = await sendVerificationEmail(
       email,
       username,
-      verifyCode,
+      verifyCode
     );
     if (!emailResponse.success) {
       return NextResponse.json(
         { success: false, message: emailResponse?.message },
-        { status: 500 },
+        { status: 500 }
       );
     }
 
     return NextResponse.json(
       { success: true, message: "Verification email sent" },
-      { status: 201 },
+      { status: 201 }
     );
   } catch (err) {
     console.error("Error in Registering User:", err);
     return NextResponse.json(
       { success: false, message: "Internal Server Error" },
-      { status: 500 },
+      { status: 500 }
     );
   }
 }

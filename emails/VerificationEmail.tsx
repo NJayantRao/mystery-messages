@@ -29,7 +29,6 @@ export const VerifyOtpEmail = ({ username, otp }: VerifyOtpEmailProps) => {
               <Text className="m-0 text-3xl font-bold text-white">
                 Email Verification
               </Text>
-
             </Section>
 
             {/* Content */}

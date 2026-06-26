@@ -51,7 +51,7 @@ export const UserSchema: Schema<User> = new Schema(
     },
     messages: [MessageSchema],
   },
-  { timestamps: true },
+  { timestamps: true }
 );
 
 export const UserModel =

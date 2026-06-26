@@ -12,7 +12,7 @@ export const MessageSchema: Schema<Message> = new Schema(
       required: true,
     },
   },
-  { timestamps: true },
+  { timestamps: true }
 );
 
 export const MessageModel =
