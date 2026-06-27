@@ -17,7 +17,7 @@ export async function POST(req: Request) {
 
     if (existingUserVerifiedByUsername) {
       return Response.json(
-        { success: false, message: "Username already exists" },
+        { success: false, message: "User already exists" },
         { status: 400 }
       );
     }
