@@ -29,14 +29,18 @@ import {
 } from "@/components/ui/field";
 
 import { Input } from "@/components/ui/input";
+import { useRouter } from "next/navigation";
+import { Eye, EyeOff } from "lucide-react";
 
 type SignUpValues = z.infer<typeof signUpSchema>;
 
 export default function SignUpPage() {
+  const router = useRouter();
   const [username, setUsername] = useState("");
   const [usernameMessage, setUsernameMessage] = useState("");
   const [isCheckingUsername, setIsCheckingUsername] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const debounced = useDebounceCallback(setUsername, 500);
 
@@ -72,8 +76,7 @@ export default function SignUpPage() {
         setUsernameMessage(response.data.message);
       } catch (error: any) {
         setUsernameMessage(
-          error.response?.data?.message ??
-            "Unable to verify username."
+          error.response?.data?.message ?? "Unable to verify username."
         );
       } finally {
         setIsCheckingUsername(false);
@@ -83,7 +86,7 @@ export default function SignUpPage() {
     checkUniqueUsername();
   }, [username]);
 
-    async function onSubmit(data: SignUpValues) {
+  async function onSubmit(data: SignUpValues) {
     setIsSubmitting(true);
 
     try {
@@ -94,6 +97,7 @@ export default function SignUpPage() {
       form.reset();
       setUsername("");
       setUsernameMessage("");
+      router.replace(`/verify-code/${username}`);
     } catch (error: any) {
       toast.error(
         error.response?.data?.message ??
@@ -115,12 +119,8 @@ export default function SignUpPage() {
         </CardHeader>
 
         <CardContent>
-          <form
-            id="signup-form"
-            onSubmit={form.handleSubmit(onSubmit)}
-          >
+          <form id="signup-form" onSubmit={form.handleSubmit(onSubmit)}>
             <FieldGroup>
-
               {/* Username */}
 
               <Controller
@@ -182,7 +182,7 @@ export default function SignUpPage() {
                 )}
               />
 
-                            {/* Password */}
+              {/* Password */}
 
               <Controller
                 name="password"
@@ -191,13 +191,28 @@ export default function SignUpPage() {
                   <Field data-invalid={fieldState.invalid}>
                     <FieldLabel>Password</FieldLabel>
 
-                    <Input
-                      {...field}
-                      type="password"
-                      placeholder="••••••••"
-                      autoComplete="new-password"
-                      aria-invalid={fieldState.invalid}
-                    />
+                    <div className="relative">
+                      <Input
+                        {...field}
+                        type={showPassword ? "text" : "password"}
+                        placeholder="••••••••"
+                        autoComplete="new-password"
+                        aria-invalid={fieldState.invalid}
+                        className="pr-10"
+                      />
+
+                      <button
+                        type="button"
+                        onClick={() => setShowPassword((prev) => !prev)}
+                        className="absolute inset-y-0 right-3 flex items-center text-muted-foreground hover:text-foreground"
+                      >
+                        {showPassword ? (
+                          <EyeOff className="h-5 w-5" />
+                        ) : (
+                          <Eye className="h-5 w-5" />
+                        )}
+                      </button>
+                    </div>
 
                     {fieldState.invalid && (
                       <FieldError errors={[fieldState.error]} />
@@ -205,7 +220,6 @@ export default function SignUpPage() {
                   </Field>
                 )}
               />
-
             </FieldGroup>
           </form>
         </CardContent>

@@ -1,6 +1,6 @@
 "use client";
 
-import * as React from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
@@ -22,6 +22,9 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { Eye, EyeOff } from "lucide-react";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const signInSchema = z.object({
   email: z
@@ -41,17 +44,24 @@ export default function SignInPage() {
       password: "",
     },
   });
+  const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
 
   async function onSubmit(data: SignInValues) {
     try {
-      // TODO:
-      // const result = await signIn("credentials", {
-      //   redirect: false,
-      //   email: data.email,
-      //   password: data.password,
-      // });
+      const result = await signIn("credentials", {
+        redirect: false,
+        email: data?.email,
+        password: data?.password,
+      });
+      console.log(result);
 
-      console.log(data);
+      if (result?.error) {
+      }
+
+      if (result?.url) {
+        router.replace("/dashboard");
+      }
     } catch (error) {
       console.error(error);
     }
@@ -99,13 +109,28 @@ export default function SignInPage() {
                   <Field data-invalid={fieldState.invalid}>
                     <FieldLabel>Password</FieldLabel>
 
-                    <Input
-                      {...field}
-                      type="password"
-                      placeholder="••••••••"
-                      autoComplete="current-password"
-                      aria-invalid={fieldState.invalid}
-                    />
+                    <div className="relative">
+                      <Input
+                        {...field}
+                        type={showPassword ? "text" : "password"}
+                        placeholder="••••••••"
+                        autoComplete="new-password"
+                        aria-invalid={fieldState.invalid}
+                        className="pr-10"
+                      />
+
+                      <button
+                        type="button"
+                        onClick={() => setShowPassword((prev) => !prev)}
+                        className="absolute inset-y-0 right-3 flex items-center text-muted-foreground hover:text-foreground"
+                      >
+                        {showPassword ? (
+                          <EyeOff className="h-5 w-5" />
+                        ) : (
+                          <Eye className="h-5 w-5" />
+                        )}
+                      </button>
+                    </div>
 
                     {fieldState.invalid && (
                       <FieldError errors={[fieldState.error]} />
