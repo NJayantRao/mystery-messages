@@ -88,7 +88,7 @@ export default function Dashboard() {
     setMessages((prev) => prev.filter((m) => m._id !== messageId));
     try {
       await axios.delete(`/api/delete-message/${messageId}`);
-      toast.success("Message deleted.");
+      // toast.success("Message deleted.");
     } catch {
       toast.error("Failed to delete message.");
       // Re-fetch to restore correct state

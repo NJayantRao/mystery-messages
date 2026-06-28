@@ -5,10 +5,10 @@ import { UserModel } from "@/models/users.models";
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { messageId: string } }
+  { params }: { params: Promise<{ messageId: string }> }
 ) {
   try {
-    const { messageId } = params;
+    const { messageId } = await params;
 
     await dbConnnect();
 

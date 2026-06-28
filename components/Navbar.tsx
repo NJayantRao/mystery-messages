@@ -54,8 +54,10 @@ const Navbar = () => {
               {/* Sign out */}
               <Button
                 size="sm"
-                onClick={() => signOut()}
-                className="flex items-center gap-1.5 rounded-lg font-medium text-sm px-4"
+                onClick={() => {
+                  signOut({ callbackUrl: "/" });
+                }}
+                className="flex items-center gap-1.5 rounded-lg font-medium text-sm px-4 cursor-pointer"
                 style={{
                   background: "linear-gradient(135deg, #7C3AED, #DB2777)",
                   border: "none",
