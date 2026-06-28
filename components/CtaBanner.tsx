@@ -55,7 +55,7 @@ const CtaBanner = () => {
               href="/sign-up"
               className="flex items-center justify-center gap-2"
             >
-              <span>Create your free account</span>
+              <span>Create your account</span>
               <ArrowRight className="h-4 w-4 shrink-0" />
             </Link>
           </Button>
