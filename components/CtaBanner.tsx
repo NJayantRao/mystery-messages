@@ -33,12 +33,30 @@ const CtaBanner = () => {
           </p>
           <Button
             size="lg"
-            className="bg-white text-gray-900 hover:bg-gray-50 font-bold px-10 h-13 text-base rounded-xl shadow-xl hover:scale-[1.02] transition-all duration-200 border-0"
+            className="
+    w-full sm:w-auto
+    h-14
+    px-6 sm:px-10
+    bg-white
+    text-gray-900
+    hover:bg-gray-50
+    font-bold
+    text-base
+    rounded-2xl
+    shadow-xl
+    hover:scale-[1.02]
+    transition-all
+    duration-200
+    border-0
+  "
             asChild
           >
-            <Link href="/sign-up">
-              Create your free account
-              <ArrowRight className="ml-2 w-4 h-4" />
+            <Link
+              href="/sign-up"
+              className="flex items-center justify-center gap-2"
+            >
+              <span>Create your free account</span>
+              <ArrowRight className="h-4 w-4 shrink-0" />
             </Link>
           </Button>
           <p className="mt-5 text-sm text-white/50">
