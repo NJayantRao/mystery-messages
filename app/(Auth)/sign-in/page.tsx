@@ -25,6 +25,7 @@ import { Input } from "@/components/ui/input";
 import { Eye, EyeOff } from "lucide-react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 const signInSchema = z.object({
   email: z
@@ -51,19 +52,28 @@ export default function SignInPage() {
     try {
       const result = await signIn("credentials", {
         redirect: false,
-        email: data?.email,
-        password: data?.password,
+        email: data.email,
+        password: data.password,
       });
-      console.log(result);
 
       if (result?.error) {
+        toast.error("Sign in failed", {
+          description: "Invalid email or password.",
+        });
+        return;
       }
 
-      if (result?.url) {
-        router.replace("/dashboard");
-      }
+      toast.success("Welcome back! 👋", {
+        description: "You've signed in successfully.",
+      });
+
+      router.replace("/dashboard");
     } catch (error) {
       console.error(error);
+
+      toast.error("Something went wrong", {
+        description: "Please try again in a few moments.",
+      });
     }
   }
 

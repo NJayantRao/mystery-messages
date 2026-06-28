@@ -85,7 +85,7 @@ export async function GET(request: Request) {
     }
     const userId = user?._id;
 
-    const existingUser = await UserModel.findById({ userId });
+    const existingUser = await UserModel.findById(userId);
 
     if (!existingUser) {
       return Response.json(

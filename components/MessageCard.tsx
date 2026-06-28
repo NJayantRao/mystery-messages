@@ -35,7 +35,6 @@ type MessageCardProps = {
 const MessageCard = ({
   messageId,
   message,
-  createdAt,
   onMessageDelete,
 }: MessageCardProps) => {
   const handleDelete = async () => {
@@ -54,10 +53,6 @@ const MessageCard = ({
       <CardHeader className="flex flex-row items-start justify-between space-y-0">
         <div>
           <CardTitle className="text-lg">Anonymous Message</CardTitle>
-
-          <CardDescription>
-            {new Date(createdAt).toLocaleString()}
-          </CardDescription>
         </div>
 
         <AlertDialog>

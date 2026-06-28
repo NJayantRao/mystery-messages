@@ -28,9 +28,7 @@ import {
 import { Input } from "@/components/ui/input";
 
 const verifyCodeSchema = z.object({
-  code: z
-    .string()
-    .length(6, "Verification code must be exactly 6 digits"),
+  code: z.string().length(6, "Verification code must be exactly 6 digits"),
 });
 
 type VerifyCodeValues = z.infer<typeof verifyCodeSchema>;
@@ -63,10 +61,7 @@ const VerifyCode = () => {
 
       router.replace("/sign-in");
     } catch (error: any) {
-      toast.error(
-        error.response?.data?.message ??
-          "Failed to verify account."
-      );
+      toast.error(error.response?.data?.message ?? "Failed to verify account.");
     } finally {
       setIsSubmitting(false);
     }
@@ -76,9 +71,9 @@ const VerifyCode = () => {
     <div className="flex min-h-screen items-center justify-center px-4 bg-muted/30">
       <Card className="w-full max-w-md">
         <CardHeader>
-        <CardTitle className="text-2xl font-bold">
-  Verify your account
-</CardTitle>
+          <CardTitle className="text-2xl font-bold">
+            Verify your account
+          </CardTitle>
 
           <CardDescription>
             Enter the verification code sent to your email.
@@ -86,10 +81,7 @@ const VerifyCode = () => {
         </CardHeader>
 
         <CardContent>
-          <form
-            id="verify-form"
-            onSubmit={form.handleSubmit(onSubmit)}
-          >
+          <form id="verify-form" onSubmit={form.handleSubmit(onSubmit)}>
             <FieldGroup>
               <Controller
                 name="code"
@@ -108,9 +100,7 @@ const VerifyCode = () => {
                     />
 
                     {fieldState.invalid && (
-                      <FieldError
-                        errors={[fieldState.error]}
-                      />
+                      <FieldError errors={[fieldState.error]} />
                     )}
                   </Field>
                 )}
@@ -126,9 +116,7 @@ const VerifyCode = () => {
             className="w-full"
             disabled={isSubmitting}
           >
-            {isSubmitting
-              ? "Verifying..."
-              : "Verify Account"}
+            {isSubmitting ? "Verifying..." : "Verify Account"}
           </Button>
         </CardFooter>
       </Card>

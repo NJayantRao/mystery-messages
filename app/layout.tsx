@@ -29,12 +29,12 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <AuthProvider>
-        <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col">
+        <AuthProvider>
           {children}
           <Toaster position="top-center" richColors closeButton expand />
-        </body>
-      </AuthProvider>
+        </AuthProvider>
+      </body>
     </html>
   );
 }

@@ -24,8 +24,8 @@ export async function GET(request: Request) {
     const userId = new mongoose.Types.ObjectId(user?._id);
 
     const userWithMessages = await UserModel.aggregate([
-      { $match: { id: userId } },
-      { $unwind: "$messages" },
+      { $match: { _id: userId } },
+      { $unwind: { path: "$messages", preserveNullAndEmptyArrays: true } },
       { $sort: { "messages.createdAt": -1 } },
       { $group: { _id: "$_id", messages: { $push: "$messages" } } },
     ]);
@@ -48,5 +48,11 @@ export async function GET(request: Request) {
       },
       { status: 200 }
     );
-  } catch (error) {}
+  } catch (error) {
+    console.error("Error fetching messages:", error);
+    return Response.json(
+      { success: false, message: "Internal server error" },
+      { status: 500 }
+    );
+  }
 }
