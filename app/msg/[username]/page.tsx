@@ -19,7 +19,7 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { messagesSchema } from "@/validations/messages.schema";
-import { SUGGESTIONS } from "@/lib/suggestions";
+import { SUGGESTIONS } from "@/data/suggestions";
 
 type MessageForm = z.infer<typeof messagesSchema>;
 
@@ -162,7 +162,7 @@ export default function SendMessagePage() {
         <Button
           type="submit"
           form="send-message-form"
-          className="w-full"
+          className="w-full cursor-pointer"
           disabled={isSending}
         >
           <Send className="mr-2 h-4 w-4" />

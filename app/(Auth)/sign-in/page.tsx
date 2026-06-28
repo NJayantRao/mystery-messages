@@ -80,9 +80,12 @@ export default function SignInPage() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-muted/30 px-4">
       <Card className="w-full max-w-md">
-        <CardHeader>
-          <CardTitle>Welcome Back 👋</CardTitle>
-          <CardDescription>
+        <CardHeader className="text-center space-y-2">
+          <CardTitle className="text-3xl font-extrabold tracking-tight text-gray-900">
+            Welcome Back 👋
+          </CardTitle>
+
+          <CardDescription className="text-gray-500">
             Sign in to continue to your account.
           </CardDescription>
         </CardHeader>
@@ -132,7 +135,7 @@ export default function SignInPage() {
                       <button
                         type="button"
                         onClick={() => setShowPassword((prev) => !prev)}
-                        className="absolute inset-y-0 right-3 flex items-center text-muted-foreground hover:text-foreground"
+                        className="absolute inset-y-0 right-3 flex items-center text-muted-foreground hover:text-foreground cursor-pointer"
                       >
                         {showPassword ? (
                           <EyeOff className="h-5 w-5" />
@@ -153,12 +156,16 @@ export default function SignInPage() {
         </CardContent>
 
         <CardFooter className="flex flex-col gap-4">
-          <Button type="submit" form="signin-form" className="w-full">
+          <Button
+            type="submit"
+            form="signin-form"
+            className="w-full cursor-pointer"
+          >
             Sign In
           </Button>
 
           <p className="text-center text-sm text-muted-foreground">
-            Dont have an account?{" "}
+            {` Don' t have an account?`}{" "}
             <Link
               href="/sign-up"
               className="font-medium text-primary hover:underline"

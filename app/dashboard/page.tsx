@@ -144,8 +144,9 @@ export default function Dashboard() {
                     size="icon"
                     onClick={copyProfileUrl}
                     disabled={!profileUrl}
+                    className="cursor-pointer"
                   >
-                    <Copy className="h-4 w-4" />
+                    <Copy className="h-4 w-4 " />
                   </Button>
                 </div>
               </div>
@@ -160,6 +161,7 @@ export default function Dashboard() {
                     </p>
                   </div>
                   <Switch
+                    className="cursor-pointer"
                     checked={acceptMessages}
                     onCheckedChange={handleToggleAcceptMessages}
                     disabled={isTogglingMessages}
@@ -188,7 +190,7 @@ export default function Dashboard() {
                 variant="outline"
                 onClick={() => fetchMessages(true)}
                 disabled={isRefreshing}
-                className="rounded-xl"
+                className="rounded-xl  cursor-pointer"
               >
                 <RefreshCcw
                   className={`mr-2 h-4 w-4 ${isRefreshing ? "animate-spin" : ""}`}

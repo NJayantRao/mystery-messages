@@ -111,9 +111,12 @@ export default function SignUpPage() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-muted/30 px-4">
       <Card className="w-full max-w-md">
-        <CardHeader>
-          <CardTitle>Create your account 🚀</CardTitle>
-          <CardDescription>
+        <CardHeader className="text-center space-y-2">
+          <CardTitle className="text-3xl font-extrabold tracking-tight text-gray-900">
+            Join Mystery Messages 🚀
+          </CardTitle>
+
+          <CardDescription className="text-gray-500">
             Sign up to start receiving anonymous messages.
           </CardDescription>
         </CardHeader>
@@ -204,7 +207,7 @@ export default function SignUpPage() {
                       <button
                         type="button"
                         onClick={() => setShowPassword((prev) => !prev)}
-                        className="absolute inset-y-0 right-3 flex items-center text-muted-foreground hover:text-foreground"
+                        className="absolute inset-y-0 right-3 flex items-center text-muted-foreground hover:text-foreground cursor-pointer"
                       >
                         {showPassword ? (
                           <EyeOff className="h-5 w-5" />
@@ -228,7 +231,7 @@ export default function SignUpPage() {
           <Button
             type="submit"
             form="signup-form"
-            className="w-full"
+            className="w-full cursor-pointer"
             disabled={isSubmitting}
           >
             {isSubmitting ? "Creating Account..." : "Sign Up"}

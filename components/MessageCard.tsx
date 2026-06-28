@@ -57,8 +57,12 @@ const MessageCard = ({
 
         <AlertDialog>
           <AlertDialogTrigger asChild>
-            <Button variant="destructive" size="icon">
-              <Trash2 className="h-4 w-4" />
+            <Button
+              variant="destructive"
+              size="icon"
+              className=" cursor-pointer"
+            >
+              <Trash2 className="h-4 w-4 " />
             </Button>
           </AlertDialogTrigger>
 

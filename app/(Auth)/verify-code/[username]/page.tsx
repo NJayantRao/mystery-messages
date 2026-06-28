@@ -70,13 +70,13 @@ const VerifyCode = () => {
   return (
     <div className="flex min-h-screen items-center justify-center px-4 bg-muted/30">
       <Card className="w-full max-w-md">
-        <CardHeader>
-          <CardTitle className="text-2xl font-bold">
-            Verify your account
+        <CardHeader className="text-center space-y-2">
+          <CardTitle className="text-3xl font-extrabold tracking-tight text-gray-900">
+            Verify your account ✨
           </CardTitle>
 
-          <CardDescription>
-            Enter the verification code sent to your email.
+          <CardDescription className="text-gray-500">
+            Enter the verification code we sent to your email address.
           </CardDescription>
         </CardHeader>
 
@@ -113,7 +113,7 @@ const VerifyCode = () => {
           <Button
             type="submit"
             form="verify-form"
-            className="w-full"
+            className="w-full cursor-pointer"
             disabled={isSubmitting}
           >
             {isSubmitting ? "Verifying..." : "Verify Account"}
